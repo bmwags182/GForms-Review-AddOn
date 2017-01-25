@@ -4,4 +4,14 @@ Shortcodes:
     ☐ author: show or do not show the author's name unter their review
     ☐ quotes: Show the quotes around the review
     ☐ date: show the date the review was posted under the author
+    ☐ id: this would be the entry id from the database
 
+Forms:
+  Form settings:
+    ☐ Enable a form as a review collection form and additional options should appear (stored as a value in the database to be queried)
+    ☐ grab field select function from vinaudit plugin since I already wrote something I should be able to repurpose for this
+
+Plugin:
+  Plugin Settings:
+    ☐ Setup an options page here which allows for setting defaults for the shortcode arguments
+    ☐
