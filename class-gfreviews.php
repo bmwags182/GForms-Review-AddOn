@@ -52,14 +52,14 @@ class GFReviews extends GFAddOn {
 				'version' => $this->_version,
 				'deps'    => array( 'jquery' ),
 				'strings' => array(
-					'first'  => esc_html__( 'First Choice', 'simpleaddon' ),
-					'second' => esc_html__( 'Second Choice', 'simpleaddon' ),
-					'third'  => esc_html__( 'Third Choice', 'simpleaddon' )
+					'first'  => esc_html__( 'First Choice', 'gfreviews' ),
+					'second' => esc_html__( 'Second Choice', 'gfreviews' ),
+					'third'  => esc_html__( 'Third Choice', 'gfreviews' )
 				),
 				'enqueue' => array(
 					array(
 						'admin_page' => array( 'form_settings' ),
-						'tab'        => 'simpleaddon'
+						'tab'        => 'gfreviews'
 					)
 				)
 			),
@@ -128,12 +128,12 @@ class GFReviews extends GFAddOn {
 	public function plugin_settings_fields() {
 		return array(
 			array(
-				'title'  => esc_html__( 'Simple Add-On Settings', 'simpleaddon' ),
+				'title'  => esc_html__( 'Gravity Reviews Settings', 'gfreviews' ),
 				'fields' => array(
 					array(
 						'name'              => 'mytextbox',
-						'tooltip'           => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-						'label'             => esc_html__( 'This is the label', 'simpleaddon' ),
+						'tooltip'           => esc_html__( 'This is the tooltip', 'gfreviews' ),
+						'label'             => esc_html__( 'This is the label', 'gfreviews' ),
 						'type'              => 'text',
 						'class'             => 'small',
 						'feedback_callback' => array( $this, 'is_valid_setting' ),
@@ -151,131 +151,131 @@ class GFReviews extends GFAddOn {
 	public function form_settings_fields( $form ) {
 		return array(
 			array(
-				'title'  => esc_html__( 'Simple Form Settings', 'simpleaddon' ),
+				'title'  => esc_html__( 'Simple Form Settings', 'gfreviews' ),
 				'fields' => array(
 					array(
-						'label'   => esc_html__( 'My checkbox', 'simpleaddon' ),
+						'label'   => esc_html__( 'My checkbox', 'gfreviews' ),
 						'type'    => 'checkbox',
 						'name'    => 'enabled',
-						'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'choices' => array(
 							array(
-								'label' => esc_html__( 'Enabled', 'simpleaddon' ),
+								'label' => esc_html__( 'Enabled', 'gfreviews' ),
 								'name'  => 'enabled',
 							),
 						),
 					),
 					array(
-						'label'   => esc_html__( 'My checkboxes', 'simpleaddon' ),
+						'label'   => esc_html__( 'My checkboxes', 'gfreviews' ),
 						'type'    => 'checkbox',
 						'name'    => 'checkboxgroup',
-						'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'choices' => array(
 							array(
-								'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'First Choice', 'gfreviews' ),
 								'name'  => 'first',
 							),
 							array(
-								'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
 								'name'  => 'second',
 							),
 							array(
-								'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
 								'name'  => 'third',
 							),
 						),
 					),
 					array(
-						'label'   => esc_html__( 'My Radio Buttons', 'simpleaddon' ),
+						'label'   => esc_html__( 'My Radio Buttons', 'gfreviews' ),
 						'type'    => 'radio',
 						'name'    => 'myradiogroup',
-						'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'choices' => array(
 							array(
-								'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'First Choice', 'gfreviews' ),
 							),
 							array(
-								'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
 							),
 							array(
-								'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
 							),
 						),
 					),
 					array(
-						'label'      => esc_html__( 'My Horizontal Radio Buttons', 'simpleaddon' ),
+						'label'      => esc_html__( 'My Horizontal Radio Buttons', 'gfreviews' ),
 						'type'       => 'radio',
 						'horizontal' => true,
 						'name'       => 'myradiogrouph',
-						'tooltip'    => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip'    => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'choices'    => array(
 							array(
-								'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'First Choice', 'gfreviews' ),
 							),
 							array(
-								'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
 							),
 							array(
-								'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
 							),
 						),
 					),
 					array(
-						'label'   => esc_html__( 'My Dropdown', 'simpleaddon' ),
+						'label'   => esc_html__( 'My Dropdown', 'gfreviews' ),
 						'type'    => 'select',
 						'name'    => 'mydropdown',
-						'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'choices' => array(
 							array(
-								'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'First Choice', 'gfreviews' ),
 								'value' => 'first',
 							),
 							array(
-								'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
 								'value' => 'second',
 							),
 							array(
-								'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
 								'value' => 'third',
 							),
 						),
 					),
 					array(
-						'label'             => esc_html__( 'My Text Box', 'simpleaddon' ),
+						'label'             => esc_html__( 'My Text Box', 'gfreviews' ),
 						'type'              => 'text',
 						'name'              => 'mytext',
-						'tooltip'           => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip'           => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'class'             => 'medium',
 						'feedback_callback' => array( $this, 'is_valid_setting' ),
 					),
 					array(
-						'label'   => esc_html__( 'My Text Area', 'simpleaddon' ),
+						'label'   => esc_html__( 'My Text Area', 'gfreviews' ),
 						'type'    => 'textarea',
 						'name'    => 'mytextarea',
-						'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
 						'class'   => 'medium merge-tag-support mt-position-right',
 					),
 					array(
-						'label' => esc_html__( 'My Hidden Field', 'simpleaddon' ),
+						'label' => esc_html__( 'My Hidden Field', 'gfreviews' ),
 						'type'  => 'hidden',
 						'name'  => 'myhidden',
 					),
 					array(
-						'label' => esc_html__( 'My Custom Field', 'simpleaddon' ),
+						'label' => esc_html__( 'My Custom Field', 'gfreviews' ),
 						'type'  => 'my_custom_field_type',
 						'name'  => 'my_custom_field',
 						'args'  => array(
 							'text'     => array(
-								'label'         => esc_html__( 'A textbox sub-field', 'simpleaddon' ),
+								'label'         => esc_html__( 'A textbox sub-field', 'gfreviews' ),
 								'name'          => 'subtext',
 								'default_value' => 'change me',
 							),
 							'checkbox' => array(
-								'label'   => esc_html__( 'A checkbox sub-field', 'simpleaddon' ),
+								'label'   => esc_html__( 'A checkbox sub-field', 'gfreviews' ),
 								'name'    => 'my_custom_field_check',
 								'choices' => array(
 									array(
-										'label'         => esc_html__( 'Activate', 'simpleaddon' ),
+										'label'         => esc_html__( 'Activate', 'gfreviews' ),
 										'name'          => 'subcheck',
 										'default_value' => true,
 									),
@@ -284,7 +284,7 @@ class GFReviews extends GFAddOn {
 						),
 					),
 					array(
-						'label' => esc_html__( 'Simple condition', 'simpleaddon' ),
+						'label' => esc_html__( 'Simple condition', 'gfreviews' ),
 						'type'  => 'custom_logic_type',
 						'name'  => 'custom_logic',
 					),
@@ -300,7 +300,7 @@ class GFReviews extends GFAddOn {
 	 * @param bool|true $echo Should the setting markup be echoed.
 	 */
 	public function settings_my_custom_field_type( $field, $echo = true ) {
-		echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'simpleaddon' ) . '</div>';
+		echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'gfreviews' ) . '</div>';
 
 		// get the text field settings from the main field and then render the text field
 		$text_field = $field['args']['text'];
@@ -331,7 +331,7 @@ class GFReviews extends GFAddOn {
 			'type'    => 'checkbox',
 			'choices' => array(
 				array(
-					'label' => esc_html__( 'Enabled', 'simpleaddon' ),
+					'label' => esc_html__( 'Enabled', 'gfreviews' ),
 					'name'  => $name . '_enabled',
 				),
 			),
