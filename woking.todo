@@ -1,0 +1,7 @@
+Shortcodes:
+  Arguments:
+    ☐ color: color of the text in the review
+    ☐ author: show or do not show the author's name unter their review
+    ☐ quotes: Show the quotes around the review
+    ☐ date: show the date the review was posted under the author
+
