@@ -1,4 +1,5 @@
 <?php
+include ( dirname(__FILE__) . "/functions.php");
 
 GFForms::include_addon_framework();
 
@@ -6,10 +7,10 @@ class GFReviews extends GFAddOn {
 
 	protected $_version = GF_REVIEWS_VERSION;
 	protected $_min_gravityforms_version = '1.9';
-	protected $_slug = 'Gravity Reviews';
-	protected $_path = 'review-plugin/reviews.php';
+	protected $_slug = 'gravity-reviews';
+	protected $_path = './reviews.php';
 	protected $_full_path = __FILE__;
-	protected $_title = 'Gravity Forms Reviews Add-On';
+	protected $_title = 'Gravity Reviews';
 	protected $_short_title = 'Reviews Add-On';
 
 	private static $_instance = null;
@@ -47,8 +48,8 @@ class GFReviews extends GFAddOn {
 	public function scripts() {
 		$scripts = array(
 			array(
-				'handle'  => 'my_script_js',
-				'src'     => $this->get_base_url() . '/js/my_script.js',
+				'handle'  => 'mainjs',
+				'src'     => $this->get_base_url() . '/js/main.js',
 				'version' => $this->_version,
 				'deps'    => array( 'jquery' ),
 				'strings' => array(
@@ -115,6 +116,7 @@ class GFReviews extends GFAddOn {
 
 	/**
 	 * Creates a custom page for this add-on.
+	 * I will later use this to create an about page for the plugin.
 	 */
 	public function plugin_page() {
 		echo 'This page appears in the Forms menu';
@@ -122,6 +124,7 @@ class GFReviews extends GFAddOn {
 
 	/**
 	 * Configures the settings which should be rendered on the add-on settings tab.
+	 * This will be used to create default values for things
 	 *
 	 * @return array
 	 */
@@ -144,145 +147,69 @@ class GFReviews extends GFAddOn {
 	}
 
 	/**
-	 * Configures the settings which should be rendered on the Form Settings > Simple Add-On tab.
-	 *
-	 * @return array
+	 * Return the settings page for an individual form
+	 * @param  object $form 	Form to apply settings to
+	 * @return array    		Settings options for the form
 	 */
 	public function form_settings_fields( $form ) {
 		return array(
 			array(
-				'title'  => esc_html__( 'Simple Form Settings', 'gfreviews' ),
+				'title'  => esc_html__( 'Gravity Reviews - Form Settings', 'gfreviews' ),
 				'fields' => array(
 					array(
-						'label'   => esc_html__( 'My checkbox', 'gfreviews' ),
+						'label'   => esc_html__( 'Is this a review form?', 'gfreviews' ),
 						'type'    => 'checkbox',
-						'name'    => 'enabled',
-						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
+						'name'    => 'review-form',
+						'tooltip' => esc_html__( 'Check this if the form will be used for reviews', 'gfreviews' ),
 						'choices' => array(
 							array(
 								'label' => esc_html__( 'Enabled', 'gfreviews' ),
-								'name'  => 'enabled',
+								'name'  => 'true',
 							),
 						),
 					),
 					array(
-						'label'   => esc_html__( 'My checkboxes', 'gfreviews' ),
-						'type'    => 'checkbox',
-						'name'    => 'checkboxgroup',
-						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
+						'label'   => esc_html__('Alert the admin?', 'gfreviews'),
+						'type' 	  => 'checkbox',
+						'name'    => 'admin-alert',
+						'tooltip' => esc_html__('Check this if you want and email when someone leaves a review', 'gfreviews'),
 						'choices' => array(
 							array(
-								'label' => esc_html__( 'First Choice', 'gfreviews' ),
-								'name'  => 'first',
-							),
-							array(
-								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
-								'name'  => 'second',
-							),
-							array(
-								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
-								'name'  => 'third',
+								'label' => esc_html__('Enabled', 'gfreviews'),
+								'name'  => 'admin-alert',
 							),
 						),
 					),
 					array(
-						'label'   => esc_html__( 'My Radio Buttons', 'gfreviews' ),
-						'type'    => 'radio',
-						'name'    => 'myradiogroup',
-						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
-						'choices' => array(
-							array(
-								'label' => esc_html__( 'First Choice', 'gfreviews' ),
-							),
-							array(
-								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
-							),
-							array(
-								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
-							),
-						),
-					),
-					array(
-						'label'      => esc_html__( 'My Horizontal Radio Buttons', 'gfreviews' ),
-						'type'       => 'radio',
-						'horizontal' => true,
-						'name'       => 'myradiogrouph',
-						'tooltip'    => esc_html__( 'This is the tooltip', 'gfreviews' ),
-						'choices'    => array(
-							array(
-								'label' => esc_html__( 'First Choice', 'gfreviews' ),
-							),
-							array(
-								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
-							),
-							array(
-								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
-							),
-						),
-					),
-					array(
-						'label'   => esc_html__( 'My Dropdown', 'gfreviews' ),
+						'label'   => esc_html__( 'Reviewers Name:', 'gfreviews' ),
 						'type'    => 'select',
-						'name'    => 'mydropdown',
-						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
-						'choices' => array(
-							array(
-								'label' => esc_html__( 'First Choice', 'gfreviews' ),
-								'value' => 'first',
-							),
-							array(
-								'label' => esc_html__( 'Second Choice', 'gfreviews' ),
-								'value' => 'second',
-							),
-							array(
-								'label' => esc_html__( 'Third Choice', 'gfreviews' ),
-								'value' => 'third',
-							),
-						),
+						'name'    => 'review-author',
+						'tooltip' => esc_html__( 'This is the field where the user will enter their own name.', 'gfreviews' ),
+						'choices' => get_field_choices($form),
 					),
 					array(
-						'label'             => esc_html__( 'My Text Box', 'gfreviews' ),
-						'type'              => 'text',
-						'name'              => 'mytext',
-						'tooltip'           => esc_html__( 'This is the tooltip', 'gfreviews' ),
-						'class'             => 'medium',
-						'feedback_callback' => array( $this, 'is_valid_setting' ),
+						'label'   => esc_html__( 'Reviewers Email:', 'gfreviews' ),
+						'type'    => 'select',
+						'name'    => 'review-email',
+						'tooltip' => esc_html__( 'This is the field where the user will enter their email.', 'gfreviews' ),
+						'choices' => get_field_choices($form),
 					),
 					array(
-						'label'   => esc_html__( 'My Text Area', 'gfreviews' ),
-						'type'    => 'textarea',
-						'name'    => 'mytextarea',
-						'tooltip' => esc_html__( 'This is the tooltip', 'gfreviews' ),
-						'class'   => 'medium merge-tag-support mt-position-right',
+						'label'      => esc_html__( 'Review Box:', 'gfreviews' ),
+						'type'       => 'select',
+						'horizontal' => true,
+						'name'       => 'review',
+						'tooltip'    => esc_html__( 'This is the field the user types their review into.', 'gfreviews' ),
+						'choices'    => get_field_choices($form),
 					),
 					array(
-						'label' => esc_html__( 'My Hidden Field', 'gfreviews' ),
-						'type'  => 'hidden',
-						'name'  => 'myhidden',
+						'label'   => esc_html__( 'Review Date', 'gfreviews' ),
+						'type'    => 'select',
+						'name'    => 'review-date',
+						'tooltip' => esc_html__( 'Best to keep this field hidden and allow it to be set via javascript or a default setting in the php. (Default will be the date the review was submitted.)', 'gfreviews' ),
+						'choices' => get_field_choices($form),
 					),
-					array(
-						'label' => esc_html__( 'My Custom Field', 'gfreviews' ),
-						'type'  => 'my_custom_field_type',
-						'name'  => 'my_custom_field',
-						'args'  => array(
-							'text'     => array(
-								'label'         => esc_html__( 'A textbox sub-field', 'gfreviews' ),
-								'name'          => 'subtext',
-								'default_value' => 'change me',
-							),
-							'checkbox' => array(
-								'label'   => esc_html__( 'A checkbox sub-field', 'gfreviews' ),
-								'name'    => 'my_custom_field_check',
-								'choices' => array(
-									array(
-										'label'         => esc_html__( 'Activate', 'gfreviews' ),
-										'name'          => 'subcheck',
-										'default_value' => true,
-									),
-								),
-							),
-						),
-					),
+
 					array(
 						'label' => esc_html__( 'Simple condition', 'gfreviews' ),
 						'type'  => 'custom_logic_type',

@@ -21,7 +21,7 @@ Author URI:
 define( 'GF_REVIEWS_VERSION', '0.1' );
 
 add_action( 'gform_loaded', array( 'GF_Reviews_Bootstrap', 'load' ), 5 );
-
+include(dirname(__FILE__) . "/functions.php");
 class GF_Reviews_Bootstrap {
 
     public static function load() {
