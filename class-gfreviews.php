@@ -1,5 +1,5 @@
 <?php
-include ( dirname(__FILE__) . "/functions.php");
+// include ( dirname(__FILE__) . "/functions.php");
 
 GFForms::include_addon_framework();
 
@@ -374,6 +374,7 @@ class GFReviews extends GFAddOn {
 
 		if ( $result ) {
 			// Do something awesome because the rules were met.
+			check_settings($entry, $form);
 		}
 	}
 
@@ -390,5 +391,9 @@ class GFReviews extends GFAddOn {
 	public function is_valid_setting( $value ) {
 		return strlen( $value ) < 10;
 	}
+
+	public function render_uninstall() {
+        // an empty function will remove the uninstall section on the settings page
+    }
 
 }

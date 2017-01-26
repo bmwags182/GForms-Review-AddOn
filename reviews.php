@@ -21,7 +21,7 @@ Author URI:
 define( 'GF_REVIEWS_VERSION', '0.1' );
 
 add_action( 'gform_loaded', array( 'GF_Reviews_Bootstrap', 'load' ), 5 );
-include(dirname(__FILE__) . "/functions.php");
+// include(dirname(__FILE__) . "/functions.php");
 class GF_Reviews_Bootstrap {
 
     public static function load() {
@@ -39,4 +39,61 @@ class GF_Reviews_Bootstrap {
 
 function gf_simple_addon() {
     return GFSimpleAddOn::get_instance();
+}
+
+/**
+ * Get available fields and return as an array of options
+ * @param  object $form     gavity forms object
+ * @return array            field choice options
+ */
+function get_field_choices($form) {
+    foreach ($form['fields'] as $field) {
+        $field_title = $field['label'];
+        $choice = array(
+                        'label' => $field_title,
+                        'value' => $field_title,
+                        );
+        $choices[] = $choice;
+    }
+    return $choices;
+}
+
+/**
+ * built mainly for debugging purposes to make sure things are working
+ * @param  string $message what would you like the message to say
+ * @param  string $subject Subject line of the email
+ */
+function mail_dev($message, $subject) {
+    $admin = "bwagner@drivestl.com";
+    $headers = "From: Test App <test@drivestl.com>";
+    $message = wordwrap( $message, 70 );
+    mail($admin, $subject, $message, $headers);
+}
+
+/**
+ * see if form is selected as a review collection form
+ * @param  array $entry entry data from the form submitted
+ * @param  array $form  form which was submitted
+ */
+function check_enabled($entry, $form) {
+    $id = $form['id'];
+    $form_meta = GFAPI::get_form($id);
+    $settings = $form_meta['gfreviews'];
+
+    if ($settings['review-form']=='1') {
+        if ($settings['admin-alert']=='1') {
+            mail_dev(print_r($entry, true), "Mail Admin Enabled");
+        }
+        mail_dev(print_r($entry, true), "This is a Review");
+        submit_review($entry, $form);
+    }
+}
+
+/**
+ * What to do with a submission when complete
+ * @param  array $entry data from the form
+ * @param  array $form  form which was submitted
+ */
+function submit_review($entry, $form) {
+
 }
