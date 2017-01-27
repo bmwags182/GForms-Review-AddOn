@@ -17,3 +17,14 @@ Forms:
 Plugin:
   Plugin Settings:
     ☐ Setup an options page here which allows for setting defaults for the shortcode argument **seen above**
+
+Custom Post Types:
+  ☐ I will need to create a custom post type i'll call them "reviews" for easy maintenance for admins
+
+Arguments for register_post_type($post_type, $args):
+  ☐ $post_type   string    used for database storage(lowercase, alphanumeric, dashes, underscores)
+  ☐ $args        array     Argument values for the post type
+      ☐ label    string    Name shown in the menu
+      ☐ labels   array     Array of values from get_post_type_labels
+                           https://developer.wordpress.org/reference/functions/get_post_type_labels/
+      ☐
