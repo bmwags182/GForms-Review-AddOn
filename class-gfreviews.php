@@ -164,7 +164,7 @@ class GFReviews extends GFAddOn {
 						'choices' => array(
 							array(
 								'label' => esc_html__( 'Enabled', 'gfreviews' ),
-								'name'  => 'true',
+								'name'  => 'enabled',
 							),
 						),
 					),
@@ -374,7 +374,7 @@ class GFReviews extends GFAddOn {
 
 		if ( $result ) {
 			// Do something awesome because the rules were met.
-			check_settings($entry, $form);
+			check_enabled($entry, $form);
 		}
 	}
 

@@ -78,14 +78,16 @@ function mail_dev($message, $subject) {
 function check_enabled($entry, $form) {
     $id = $form['id'];
     $form_meta = GFAPI::get_form($id);
-    $settings = $form_meta['gfreviews'];
+    $settings = $form_meta['gravity-reviews'];
 
-    if ($settings['review-form']=='1') {
+    if ($settings['enabled']=='1') {
         if ($settings['admin-alert']=='1') {
             mail_dev(print_r($entry, true), "Mail Admin Enabled");
         }
         mail_dev(print_r($entry, true), "This is a Review");
         submit_review($entry, $form);
+    } else {
+        mail_dev(print_r($form_meta, true), "Failed result");
     }
 }
 
@@ -95,5 +97,5 @@ function check_enabled($entry, $form) {
  * @param  array $form  form which was submitted
  */
 function submit_review($entry, $form) {
-
+    // This will be fired later
 }
